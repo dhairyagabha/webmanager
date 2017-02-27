@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webmanager</title>
+  <%= stylesheet_link_tag    "webmanager/application", media: "all" %>
+  <%= javascript_include_tag "webmanager/application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield %>
+
+</body>
+</html>
