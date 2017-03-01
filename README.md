@@ -1,5 +1,7 @@
 # Webmanager
-Short description and motivation.
+Webmanager was born out of a need to quickly create blog type websites.
+After looking at several other open source Rails CMS, webmanager was written to ensure the ease of installment and beautiful views to make the editiing of the content easier for developers as well as non developers.
+Webmanager out of the box is protected by devise, has invitation system built in for the ease of user invitations.
 
 ## Usage
 How to use my plugin.

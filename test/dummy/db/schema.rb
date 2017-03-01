@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226234536) do
+ActiveRecord::Schema.define(version: 20170227004446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "webmanager_articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.text     "body"
+    t.integer  "author_id"
+    t.string   "permalink"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "webmanager_notes", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "webmanager_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -26,10 +44,19 @@ ActiveRecord::Schema.define(version: 20170226234536) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["confirmation_token"], name: "index_webmanager_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_webmanager_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_webmanager_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_webmanager_users_on_unlock_token", unique: true, using: :btree
   end
 
 end
