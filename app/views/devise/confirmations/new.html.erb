@@ -1,16 +1,26 @@
-<h2>Resend confirmation instructions</h2>
+<div class="row">
+  <div class="card col-6 offset-3">
+    <div class="card-block">
+      <div class="form-header blue-gradient">
+        <h3><i class="fa fa-lock"></i> Resend confirmation instructions:</h3>
+      </div>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+          <%= devise_error_messages! %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix"></i>
+            <%= f.label :email %><br/>
+            <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+          <div class="actions">
+            <%= f.submit "Resend confirmation instructions", class: 'btn btn-indigo' %>
+          </div>
+      <% end %>
+    </div>
+    <div class="modal-footer row">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
