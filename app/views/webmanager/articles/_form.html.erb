@@ -1,0 +1,35 @@
+<%= form_for(article) do |f| %>
+  <% if article.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(article.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+          <ul>
+            <% article.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+  <% end %>
+
+  <div class="md-form">
+    <%= f.text_field :title, :required => true%>
+    <%= f.label :title%>
+  </div>
+  <div class="md-form">
+    <%= f.text_area :description, :required => true, class:'md-textarea'%>
+    <%= f.label :description%>
+  </div>
+  <div class="md-form">
+    <%= f.text_area :body, :required => true, class:'md-textarea'%>
+    <%= f.label :body%>
+  </div>
+
+
+  <% if @article.persisted? %>
+    <%= f.submit "Update Article", class:'btn btn-success' %>
+    <%= link_to 'Cancel', article_path(article), class:'btn-flat waves-effect' %>
+  <% else %>
+      <%= f.submit "Create Article", class:'btn btn-success' %>
+      <%= link_to 'Cancel', articles_path, class:'btn btn-primary' %>
+  <% end %>
+<% end %>

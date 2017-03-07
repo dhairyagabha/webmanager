@@ -1,0 +1,32 @@
+<div class="md-form">
+  <%= f.text_field :name%>
+  <%= f.label :name%>
+</div>
+<div class="md-form">
+  <%= f.text_field :label%>
+  <%= f.label :label%>
+</div>
+<div class="md-form">
+  <%= f.text_field :hint%>
+  <%= f.label :hint%>
+</div>
+<div class="md-form">
+  <%= f.text_field :placeholder%>
+  <%= f.label :placeholder%>
+</div>
+<div class="md-form">
+  <%= f.select :as, options_for_select(field_types)%>
+  <%= f.label :as, 'Field type:'%>
+</div>
+<div class="md-form">
+  <%= f.text_field :collection%>
+  <%= f.label :collection%>
+</div>
+<div class="md-form">
+  <%= f.check_box :disabled%>
+  <%= f.label :disabled%>
+</div>
+<div class="md-form">
+  <%= f.check_box :required%>
+  <%= f.label :required%>
+</div>

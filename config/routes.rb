@@ -5,4 +5,8 @@ Webmanager::Engine.routes.draw do
     get 'sign_out', to: '/devise/sessions#destroy'
   end
   root to: 'home#index'
+  resources :articles
+  resources :forms
+  resources :form_fields
+  resources :notes
 end

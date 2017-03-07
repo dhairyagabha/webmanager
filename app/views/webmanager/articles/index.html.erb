@@ -1,0 +1,5 @@
+<ol>
+  <% @articles.each do |article| %>
+      <li><%= link_to article.title, article_path(article) %> – <%= link_to 'Destroy', article_path(article),  data: { confirm: 'Are you sure?' }, method: :delete %></li>
+  <% end %>
+</ol>

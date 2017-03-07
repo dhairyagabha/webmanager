@@ -1,0 +1,44 @@
+<%= form_for(form) do |f| %>
+  <% if form.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(form.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+          <ul>
+            <% form.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+  <% end %>
+
+  <div class="md-form">
+    <%= f.text_field :name%>
+    <%= f.label :name%>
+  </div>
+  <div class="md-form">
+    <%= f.text_area :description, class:'md-textarea'%>
+    <%= f.label :description%>
+  </div>
+  <div class="md-form">
+    <%= f.text_area :success_message, class:'md-textarea'%>
+    <%= f.label :success_message%>
+  </div>
+  <div class="md-form">
+    <%= f.email_field :primary_mail%>
+    <%= f.label :primary_mail%>
+  </div>
+  <hr/>
+  <%= f.fields_for :form_fields do |builder| %>
+      <%= render 'webmanager/form_fields/form', :f => builder %>
+  <% end %>
+
+
+
+  <% if @form.persisted? %>
+    <%= f.submit "Update Form", class:'btn btn-success' %>
+    <%= link_to 'Cancel', form_path(form), class:'btn-flat waves-effect' %>
+  <% else %>
+      <%= f.submit "Create Form", class:'btn btn-success' %>
+      <%= link_to 'Cancel', forms_path, class:'btn btn-primary' %>
+  <% end %>
+<% end %>

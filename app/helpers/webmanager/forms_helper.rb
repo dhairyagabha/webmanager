@@ -1,5 +1,4 @@
 module Webmanager
-  module ApplicationHelper
-
+  module FormsHelper
   end
 end

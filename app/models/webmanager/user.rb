@@ -7,5 +7,12 @@ module Webmanager
 
     has_many :webmanager_notes, :class_name => 'Webmanager::Note', :foreign_key => 'author_id'
     has_many :webmanager_articles, :class_name => 'Webmanager::Article', :foreign_key => 'author_id'
+
+
+
+    def name
+      first_name + ' ' + last_name
+    end
+
   end
 end

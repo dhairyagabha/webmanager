@@ -1,0 +1,14 @@
+<h4><%= @form.name %></h4>
+<p><%= @form.description %></p>
+<p><%= @form.success_message %></p>
+<p><%= @form.primary_mail %></p>
+<%= @form.form_fields.each do |field| %>
+    <div class="md-form">
+      <% if field.as == 'string' %>
+          <%= text_field_tag :"#{field.name}" %>
+          <%= label_tag :"#{field.name}" %>
+      <% end %>
+    </div>
+
+<% end %>
+<%= link_to 'Edit Form', edit_form_path(@form) %>
