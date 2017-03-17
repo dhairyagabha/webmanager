@@ -28,10 +28,12 @@
     <%= f.label :primary_mail%>
   </div>
   <hr/>
+  <%= link_to_add_fields "Add Form Fields", f, :form_fields %>
   <%= f.fields_for :form_fields do |builder| %>
-      <%= render 'webmanager/form_fields/form', :f => builder %>
+      <%= render 'form_field_fields', :f => builder %>
   <% end %>
-
+  <div class="new-fields">
+  </div>
 
 
   <% if @form.persisted? %>

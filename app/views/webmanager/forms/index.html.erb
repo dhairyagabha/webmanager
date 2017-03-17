@@ -1,9 +1,10 @@
-<ol>
-  <% @forms.each do |form| %>
-      <li>
+<%= render :partial => 'webmanager/shared/title_row' %>
+<% if @forms.empty? %>
+    <%=render :partial=>'webmanager/shared/empty'%>
+<% else %>
+    <% @forms.each do |form| %>
         <h1><%= link_to form.name, form_path(form) %></h1>
         <p><%= form.description %></p>
         <%= link_to 'Delete', form_path(form), data: { confirm: 'Are you sure?' }, method: :delete %>
-      </li>
-  <% end %>
-</ol>
+    <% end %>
+<% end %>

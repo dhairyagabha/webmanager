@@ -1,5 +1,15 @@
-<ol>
-  <% @articles.each do |article| %>
-      <li><%= link_to article.title, article_path(article) %> – <%= link_to 'Destroy', article_path(article),  data: { confirm: 'Are you sure?' }, method: :delete %></li>
-  <% end %>
-</ol>
+<%= render :partial => 'webmanager/shared/title_row' %>
+<% if @articles.empty? %>
+    <%=render :partial=>'webmanager/shared/empty'%>
+<% else %>
+    <% @articles.each do |article| %>
+        <div class="card bottom-margin">
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to article.title, article_path(article) %></h4>
+            <small>Created by <%= article.user.name %> at <%= article.created_at.to_formatted_s(:long) %></small>
+            <hr>
+            <p class="card-text"><%= truncate article.description, length: 500 %><%= link_to 'Read More', article %></p>
+          </div>
+        </div>
+    <% end %>
+<% end %>

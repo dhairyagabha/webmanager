@@ -5,8 +5,8 @@ module Webmanager
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :timeoutable
 
-    has_many :webmanager_notes, :class_name => 'Webmanager::Note', :foreign_key => 'author_id'
-    has_many :webmanager_articles, :class_name => 'Webmanager::Article', :foreign_key => 'author_id'
+    has_many :notes, :class_name => 'Webmanager::Note', :foreign_key => 'author_id'
+    has_many :articles, :foreign_key => 'author_id'
 
 
 

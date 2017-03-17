@@ -8,6 +8,34 @@
           <%= text_field_tag :"#{field.name}" %>
           <%= label_tag :"#{field.name}" %>
       <% end %>
+      <% if field.as == 'select' %>
+          <% field_collection = field.collection.split('|') %>
+          <%= select_tag :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.hint %>
+      <% end %>
+      <% if field.as == 'radio_buttons' %>
+          <% field_collection = field.collection.split('|') %>
+          <%= field.label + ':' %>
+          <% field_collection.map do |f| %>
+              <fieldset class="form-group">
+                <%= radio_button_tag :"#{field.name}", f.strip %>
+                <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
+              </fieldset>
+          <% end %>
+      <% end %>
+      <% if field.as == 'check_list' %>
+          <% field_collection = field.collection.split('|') %>
+          <%= field.label + ':' %>
+          <% field_collection.map do |f| %>
+              <fieldset class="form-group">
+                <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, true ,{class: 'filled-in', id: f.strip} %>
+                <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
+              </fieldset>
+          <% end %>
+      <% end %>
+      <% if field.as == 'date' %>
+          <%= date_field_tag :"#{field.name}", '',class: 'form-control datepicker' %>
+          <%= field.label + ':' %>
+      <% end %>
     </div>
 
 <% end %>

@@ -1,0 +1,30 @@
+<%= form_for(note) do |f| %>
+  <% if note.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(note.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+          <ul>
+            <% note.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+  <% end %>
+
+  <div class="md-form">
+    <%= f.text_field :title %>
+    <%= f.label :title%>
+  </div>
+  <div class="md-form">
+    <%= f.text_area :body, class:'md-textarea', maxlength: 500,length: 500%>
+    <%= f.label :body%>
+  </div>
+
+
+  <% if @note.persisted? %>
+    <%= f.submit "Update Note", class:'btn btn-success' %>
+  <% else %>
+      <%= f.submit "Create Note", class:'btn btn-success' %>
+  <% end %>
+        <%= link_to 'Cancel', notes_path, class:'btn btn-primary' %>
+<% end %>

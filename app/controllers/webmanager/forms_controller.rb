@@ -18,6 +18,7 @@ module Webmanager
 
     def create
       @form = Form.new(form_params)
+      @form.form_fields.name.downcase.gsub(' ','_')
       respond_to do |format|
         if @form.save
           format.html { redirect_to @form, notice: 'Form was successfully created!' }
@@ -55,7 +56,7 @@ module Webmanager
 
     private
     def form_params
-      params.require(:form).permit(:name, :description, :success_message, :primary_mail, form_fields_attributes: [:id, :form_id, :name, :label, :hint, :placeholder, :as, :collection, :disabled, :required, :_destroy])
+      params.require(:form).permit(:id, :name, :description, :success_message, :primary_mail, form_fields_attributes: [:id, :form_id, :name, :label, :hint, :placeholder, :as, :collection, :disabled, :required, :_destroy])
     end
   end
 end

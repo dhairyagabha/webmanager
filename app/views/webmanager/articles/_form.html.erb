@@ -12,24 +12,39 @@
   <% end %>
 
   <div class="md-form">
-    <%= f.text_field :title, :required => true%>
+    <%= f.text_field :title %>
     <%= f.label :title%>
   </div>
   <div class="md-form">
-    <%= f.text_area :description, :required => true, class:'md-textarea'%>
+    <%= f.text_area :description, class:'md-textarea'%>
     <%= f.label :description%>
   </div>
   <div class="md-form">
-    <%= f.text_area :body, :required => true, class:'md-textarea'%>
-    <%= f.label :body%>
+    <%= f.label :tag_list, "Tags (separated by commas)" %>
+    <%= f.text_field :tag_list %>
+  </div>
+  <div class="md-form">
+    <%= f.trix_editor :body%>
   </div>
 
 
-  <% if @article.persisted? %>
-    <%= f.submit "Update Article", class:'btn btn-success' %>
-    <%= link_to 'Cancel', article_path(article), class:'btn-flat waves-effect' %>
-  <% else %>
-      <%= f.submit "Create Article", class:'btn btn-success' %>
-      <%= link_to 'Cancel', articles_path, class:'btn btn-primary' %>
-  <% end %>
+  <div class="fixed-bottom">
+
+  </div>
+
+
+  <footer class="page-footer center-on-small-only fixed-bottom">
+     <div class="footer-form-update container">
+          <% if @article.persisted? %>
+              <%= f.submit "Update Article", class:'btn btn-success' %>
+              <%= link_to 'Cancel', article_path(article), class:'btn-flat waves-effect' %>
+            <% else %>
+                <%= f.submit "Create Article", class:'btn btn-success' %>
+                <%= link_to 'Cancel', articles_path, class:'btn btn-primary' %>
+            <% end %>
+      </div>
+      <div class="footer-copyright">
+      </div>
+  </footer>
+
 <% end %>

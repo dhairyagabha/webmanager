@@ -11,30 +11,22 @@ module Webmanager
     end
 
     def new
-      @article = Article.new
-      @article.author_id = current_user
+      @article = current_user.articles.new
 
     end
 
     def create
-      article = Article.new(article_params)
-      article.author_id = current_user.id
-      article.permalink = article.title.downcase.gsub(' ','-')
-      abort(article.errors.inspect)
+      @article = current_user.articles.new(article_params)
+      @article.permalink = @article.title.downcase.gsub(' ','-')
       respond_to do |format|
-        if article.save
-          format.html { redirect_to article, notice: 'Article was successfully created!' }
-          format.json { render :show, status: :created, location: article }
+        if @article.save
+          format.html { redirect_to @article, notice: 'Article was successfully created!' }
+          format.json { render :show, status: :created, location: @article }
         else
           format.html { render :new }
           format.json { render json: article.errors, status: :unprocessable_entity }
         end
       end
-      # if article.save
-      #   redirect_to article_path(article), notice: "Article created successfully!"
-      # else
-      #   redirect_to :back
-      # end
     end
 
     def edit
@@ -45,7 +37,7 @@ module Webmanager
       article = Article.find(params[:id])
       article.permalink = params["article"]["title"].downcase.gsub(' ','-')
       respond_to do |format|
-        if article.save
+        if article.update(article_params)
           format.html { redirect_to article, notice: 'Article was successfully updated!' }
           format.json { render :show, status: :created, location: article }
         else
@@ -65,7 +57,7 @@ module Webmanager
     end
     private
     def article_params
-      params.require(:article).permit(:title, :description, :body, :permalink, :author_id)
+      params.require(:article).permit(:id, :title, :description, :body, :permalink, :author_id, :tag_list)
     end
   end
 end
