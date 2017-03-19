@@ -4,7 +4,7 @@ module Webmanager
       Rails.application.routes.draw do
         Article.all.each do |article|
           puts "Routing #{article.permalink}"
-          get "articles/#{article.permalink}", :to => "webmanager/articles#show", defaults: { id: article.id }
+          get "articles/#{article.permalink}", :to => "webmanager/articles#show", defaults: { id: article.id }, format:'json'
         end
       end
 

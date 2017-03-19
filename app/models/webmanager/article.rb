@@ -20,20 +20,5 @@ module Webmanager
         Tag.where(name: n.strip).first_or_create!
       end
     end
-
-
-    def self.load
-      Webmanager::Engine.routes.draw do
-        Article.all.each do |article|
-          puts "Routing #{article.permalink}"
-          get "articles/#{article.permalink}", :to => "articles#show", defaults: { id: article.id }
-        end
-      end
-    end
-
-    def self.reload
-      Webmanager::Engine.routes_reloader.reload!
-    end
-
   end
 end

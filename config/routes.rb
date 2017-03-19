@@ -11,4 +11,5 @@ Webmanager::Engine.routes.draw do
   resources :form_fields
   resources :notes
   resources :tags
+  resources :newsletter_receivers
 end

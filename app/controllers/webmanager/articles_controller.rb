@@ -2,12 +2,18 @@ require_dependency "webmanager/application_controller"
 
 module Webmanager
   class ArticlesController < ApplicationController
+    before_action :authenticate_user!, except: :show
+
     def index
       @articles = Article.all
     end
 
     def show
       @article = Article.find(params[:id])
+      respond_to do |format|
+        format.html { render :show, location: @article }
+        format.json { render json: @article }
+      end
     end
 
     def new
@@ -17,7 +23,7 @@ module Webmanager
 
     def create
       @article = current_user.articles.new(article_params)
-      @article.permalink = @article.title.downcase.gsub(' ','-')
+      @article.permalink = @article.title.downcase.gsub(' ', '-')
       respond_to do |format|
         if @article.save
           format.html { redirect_to @article, notice: 'Article was successfully created!' }
@@ -35,7 +41,7 @@ module Webmanager
 
     def update
       article = Article.find(params[:id])
-      article.permalink = params["article"]["title"].downcase.gsub(' ','-')
+      article.permalink = params["article"]["title"].downcase.gsub(' ', '-')
       respond_to do |format|
         if article.update(article_params)
           format.html { redirect_to article, notice: 'Article was successfully updated!' }
@@ -55,6 +61,7 @@ module Webmanager
         format.json { head :no_content }
       end
     end
+
     private
     def article_params
       params.require(:article).permit(:id, :title, :description, :body, :permalink, :author_id, :tag_list)
