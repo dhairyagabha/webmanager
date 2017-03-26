@@ -9,7 +9,9 @@ Webmanager::Engine.routes.draw do
   resources :articles
   resources :forms
   resources :form_fields
+  resources :form_responses
   resources :notes
   resources :tags
   resources :newsletter_receivers
+  resources :events
 end

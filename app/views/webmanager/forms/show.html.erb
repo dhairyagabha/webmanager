@@ -8,6 +8,14 @@
           <%= text_field_tag :"#{field.name}" %>
           <%= label_tag :"#{field.name}" %>
       <% end %>
+      <% if field.as == 'email' %>
+          <%= email_field_tag :"#{field.name}" %>
+          <%= label_tag :"#{field.name}" %>
+      <% end %>
+      <% if field.as == 'text' %>
+          <%= text_area_tag :"#{field.name}", '', class:'md-textarea' %>
+          <%= label_tag :"#{field.name}" %>
+      <% end %>
       <% if field.as == 'select' %>
           <% field_collection = field.collection.split('|') %>
           <%= select_tag :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.hint %>

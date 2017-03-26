@@ -1,0 +1,43 @@
+<% if field.as == 'string' %>
+    <%= label_tag :"#{field.name}" %>
+    <%= text_field_tag :"#{field.name}", '',class: 'form-control', placeholder: field.placeholder, required: 'true' if field.required == true %>
+<% end %>
+<% if field.as == 'email' %>
+    <%= label_tag :"#{field.name}" %>
+    <%= email_field_tag :"#{field.name}", '',class: 'form-control', placeholder: field.placeholder, required: 'true' if field.required == true %>
+<% end %>
+<% if field.as == 'text' %>
+    <%= label_tag :"#{field.name}" %>
+    <%= text_area_tag :"#{field.name}", '',class: 'form-control', placeholder: field.placeholder, rows:5, required: 'true' if field.required == true %>
+<% end %>
+<% if field.as == 'select' %>
+    <%= label_tag :"#{field.name}" %>
+    <% field_collection = field.collection.split('|') %>
+    <%= select_tag :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.placeholder%>
+<% end %>
+<% if field.as == 'radio_buttons' %>
+    <% field_collection = field.collection.split('|') %>
+    <%= field.label + ':' %>
+    <% field_collection.map do |f| %>
+        <div class="form-check">
+          <label class="form-check-label">
+            <%= radio_button_tag :"#{field.name}", f.strip  %>
+            <%= f.strip.titleize %>
+          </label>
+        </div>
+    <% end %>
+<% end %>
+<% if field.as == 'check_list' %>
+    <% field_collection = field.collection.split('|') %>
+    <%= field.label + ':' %>
+    <% field_collection.map do |f| %>
+        <fieldset class="form-group">
+          <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, true ,{id: f.strip} %>
+          <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
+        </fieldset>
+    <% end %>
+<% end %>
+<% if field.as == 'date' %>
+    <%= date_field_tag :"#{field.name}" %>
+    <%= field.label + ':' %>
+<% end %>

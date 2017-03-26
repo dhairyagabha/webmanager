@@ -1,0 +1,8 @@
+<% field_collection = field.collection.split('|') %>
+<%= field.label + ':' %>
+<% field_collection.map do |f| %>
+    <fieldset class="form-group">
+      <%= f.check_box :"#{field.name}_#{f.strip}", f.strip, true, {id: f.strip} %>
+      <%= f.label :"#{field.name}_#{f.strip}", f.strip.titleize %>
+    </fieldset>
+<% end %>

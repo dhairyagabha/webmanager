@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318222205) do
+ActiveRecord::Schema.define(version: 20170325050508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20170318222205) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "webmanager_events", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.text     "location"
+    t.string   "organizer"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "webmanager_form_fields", force: :cascade do |t|
     t.integer  "form_id"
     t.string   "name"
@@ -63,6 +74,13 @@ ActiveRecord::Schema.define(version: 20170318222205) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["form_id"], name: "index_webmanager_form_fields_on_form_id", using: :btree
+  end
+
+  create_table "webmanager_form_responses", force: :cascade do |t|
+    t.integer  "form_id"
+    t.text     "response"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "webmanager_forms", force: :cascade do |t|

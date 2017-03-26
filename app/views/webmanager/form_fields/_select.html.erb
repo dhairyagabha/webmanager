@@ -1,0 +1,3 @@
+<%= f.label :"#{field.name}" %>
+<% field_collection = field.collection.split('|') %>
+<%= f.select :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.placeholder %>

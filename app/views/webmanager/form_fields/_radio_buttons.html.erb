@@ -1,0 +1,10 @@
+<% field_collection = field.collection.split('|') %>
+<%= f.label :"#{field.label}"%>
+<% field_collection.map do |f| %>
+    <div class="form-check">
+      <label class="form-check-label">
+        <%= f.radio_button :"#{field.name}", f.strip %>
+        <%= f.strip.titleize %>
+      </label>
+    </div>
+<% end %>
