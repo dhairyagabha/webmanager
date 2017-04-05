@@ -1,37 +1,33 @@
-<div class="row">
-  <div class="card col-6 offset-3">
-    <div class="card-block">
-      <div class="form-header blue-gradient">
-        <h3><i class="fa fa-lock"></i> Login:</h3>
-      </div>
+<div class="mdl-cell mdl-cell--3-offset-desktop mdl-cell--6-col-desktop mdl-cell--12-col">
+  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+    <div class="mdl-card__title">
+      <div class="mdl-card__title-text mdl-typography--text-center">Webmanager Login</div>
+    </div>
+    <div class="mdl-card__supporting-text">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="md-form">
-            <i class="fa fa-envelope prefix"></i>
-            <%= f.label :email %>
-            <%= f.email_field :email, autofocus: true %>
+          <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+            <%= f.label :email, class: 'mdl-textfield__label' %>
+            <%= f.email_field :email, class: 'mdl-textfield__input', autofocus: true %>
           </div>
 
-          <div class="md-form">
-            <i class="fa fa-lock prefix"></i>
-            <%= f.label :password %>
-            <%= f.password_field :password, autocomplete: "off" %>
+          <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+            <%= f.label :password, class: 'mdl-textfield__label' %>
+            <%= f.password_field :password, class: 'mdl-textfield__input', autocomplete: "off" %>
           </div>
 
           <% if devise_mapping.rememberable? -%>
-              <div class="md-form text-center">
-                <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
-              </div>
+              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                <%= f.check_box :remember_me, class: 'mdl-checkbox__input' %>
+                <%= f.label :remember_me, class: 'mdl-checkbox__label' %>
+              </label>
           <% end -%>
-
-          <div class="actions">
-            <%= f.submit "Log in", class: 'btn btn-indigo' %>
+          </div>
+          <div class="mdl-card__actions">
+            <%= f.submit "Log in", class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+            <%= render "devise/shared/links" %>
           </div>
       <% end %>
-    </div>
-    <div class="modal-footer row">
-        <%= render "devise/shared/links" %>
-    </div>
-  </div>
+      </div>
 </div>
+
 
