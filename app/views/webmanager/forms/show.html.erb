@@ -1,50 +1,66 @@
-<h4><%= @form.name %></h4>
-<p><%= @form.description %></p>
-<p><%= @form.success_message %></p>
-<p><%= @form.primary_mail %></p>
-<%= @form.form_fields.each do |field| %>
-    <div class="md-form">
-      <% if field.as == 'string' %>
-          <%= text_field_tag :"#{field.name}" %>
-          <%= label_tag :"#{field.name}" %>
-      <% end %>
-      <% if field.as == 'email' %>
-          <%= email_field_tag :"#{field.name}" %>
-          <%= label_tag :"#{field.name}" %>
-      <% end %>
-      <% if field.as == 'text' %>
-          <%= text_area_tag :"#{field.name}", '', class:'md-textarea' %>
-          <%= label_tag :"#{field.name}" %>
-      <% end %>
-      <% if field.as == 'select' %>
-          <% field_collection = field.collection.split('|') %>
-          <%= select_tag :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.hint %>
-      <% end %>
-      <% if field.as == 'radio_buttons' %>
-          <% field_collection = field.collection.split('|') %>
-          <%= field.label + ':' %>
-          <% field_collection.map do |f| %>
-              <fieldset class="form-group">
-                <%= radio_button_tag :"#{field.name}", f.strip %>
-                <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
-              </fieldset>
-          <% end %>
-      <% end %>
-      <% if field.as == 'check_list' %>
-          <% field_collection = field.collection.split('|') %>
-          <%= field.label + ':' %>
-          <% field_collection.map do |f| %>
-              <fieldset class="form-group">
-                <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, true ,{class: 'filled-in', id: f.strip} %>
-                <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
-              </fieldset>
-          <% end %>
-      <% end %>
-      <% if field.as == 'date' %>
-          <%= date_field_tag :"#{field.name}", '',class: 'form-control datepicker' %>
-          <%= field.label + ':' %>
-      <% end %>
-    </div>
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text"><%= @form.name %></h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <p><%= @form.description %></p>
+    <p class="form-message"><%= @form.success_message %></p>
+    <p>
+      <span class="mdl-chip"><span class="mdl-chip__text"><%= @form.primary_mail.present? ? @form.primary_email : 'No Email' %></span></span>
+    </p>
+    <% @form.form_fields.each do |field| %>
+        <% if field.as == 'string' %>
+            <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+              <%= text_field_tag :"#{field.name}", '', {class: 'mdl-textfield__input', required: field.required, disabled: field.disabled} %>
+              <%= label_tag :"#{field.name}", field.placeholder, {class: 'mdl-textfield__label'} %>
+            </div>
+        <% end %>
+        <% if field.as == 'email' %>
+            <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+              <%= email_field_tag :"#{field.name}", '', {class: 'mdl-textfield__input', required: field.required, disabled: field.disabled} %>
+              <%= label_tag :"#{field.name}", field.placeholder, {class: 'mdl-textfield__label'} %>
+            </div>
+        <% end %>
+        <% if field.as == 'text' %>
+            <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+              <%= text_area_tag :"#{field.name}", '', {class:'mdl-textfield__input', rows:5, required: field.required, disabled: field.disabled}%>
+              <%= label_tag :"#{field.name}", field.placeholder,{class:'mdl-textfield__label'} %>
+            </div>
+        <% end %>
+        <% if field.as == 'select' %>
+            <% field_collection = field.collection.split('|') %>
+            <%= select_tag :"#{field.name}", options_for_select(field_collection.map { |f| [f.strip, f.strip.downcase.gsub(' ', '_')] }), prompt: field.hint %>
+        <% end %>
+        <% if field.as == 'radio_buttons' %>
+            <% field_collection = field.collection.split('|') %>
+            <%= field.label + ':' %>
+            <% field_collection.map do |f| %>
+                <fieldset class="form-group">
+                  <%= radio_button_tag :"#{field.name}", f.strip %>
+                  <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
+                </fieldset>
+            <% end %>
+        <% end %>
+        <% if field.as == 'check_list' %>
+            <% field_collection = field.collection.split('|') %>
+            <%= field.label + ':' %>
+            <% field_collection.map do |f| %>
+                <fieldset class="form-group">
+                  <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, true, {class: 'filled-in', id: f.strip} %>
+                  <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
+                </fieldset>
+            <% end %>
+        <% end %>
+        <% if field.as == 'date' %>
+            <%= date_field_tag :"#{field.name}", '', class: 'form-control datepicker' %>
+            <%= field.label + ':' %>
+        <% end %>
+    <% end %>
 
-<% end %>
-<%= link_to 'Edit Form', edit_form_path(@form) %>
+    <%= submit_tag "Submit", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--accent" %>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <%= link_to 'Edit Form', edit_form_path(@form), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+    <%= link_to 'Delete Form', form_path(@form), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect', method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
+</div>

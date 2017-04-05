@@ -1,4 +1,4 @@
-<div class="row">
-  <h1 class="h1-responsive col-sm-10">All <%= controller_name.pluralize.titleize %></h1>
-  <%= link_to 'New '+"#{controller_name.singularize}", new_path , class: 'btn btn-primary col' %>
+<div class="mdl-grid">
+  <h4 class="mdl-cell mdl-cell--10-col">All <%= controller_name.pluralize.titleize %></h4>
+  <%= link_to 'New '+"#{controller_name.singularize}", new_path , class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
 </div>

@@ -1,3 +1,4 @@
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
 <%= form_for(form) do |f| %>
   <% if form.errors.any? %>
         <div id="error_explanation">
@@ -11,36 +12,43 @@
         </div>
   <% end %>
 
-  <div class="md-form">
-    <%= f.text_field :name%>
-    <%= f.label :name%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_field :name, class:'mdl-textfield__input'%>
+    <%= f.label :name, class:'mdl-textfield__label'%>
   </div>
-  <div class="md-form">
-    <%= f.text_area :description, class:'md-textarea'%>
-    <%= f.label :description%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_area :description, class:'mdl-textfield__input', rows: 3%>
+    <%= f.label :description, class:'mdl-textfield__label'%>
   </div>
-  <div class="md-form">
-    <%= f.text_area :success_message, class:'md-textarea'%>
-    <%= f.label :success_message%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_area :success_message, class:'mdl-textfield__input', rows:1%>
+    <%= f.label :success_message, class:'mdl-textfield__label'%>
   </div>
-  <div class="md-form">
-    <%= f.email_field :primary_mail%>
-    <%= f.label :primary_mail%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.email_field :primary_mail, class:'mdl-textfield__input'%>
+    <%= f.label :primary_mail, class:'mdl-textfield__label'%>
   </div>
-  <hr/>
+  <div class="mdl-card__actions mdl-card--border">
   <%= link_to_add_fields "Add Form Fields", f, :form_fields %>
-  <%= f.fields_for :form_fields do |builder| %>
-      <%= render 'form_field_fields', :f => builder %>
-  <% end %>
-  <div class="new-fields">
+  </div>
+
   </div>
 
 
+    <%= f.fields_for :form_fields do |builder| %>
+        <%= render 'form_field_fields', :f => builder %>
+    <% end %>
+  <div class="new-fields ">
+  </div>
+
+  <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
   <% if @form.persisted? %>
-    <%= f.submit "Update Form", class:'btn btn-success' %>
-    <%= link_to 'Cancel', form_path(form), class:'btn-flat waves-effect' %>
-  <% else %>
-      <%= f.submit "Create Form", class:'btn btn-success' %>
-      <%= link_to 'Cancel', forms_path, class:'btn btn-primary' %>
-  <% end %>
+      <%= f.submit "Update Form", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+      <%= link_to 'Cancel', form_path(form), class:'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+    <% else %>
+        <%= f.submit "Create Form", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+        <%= link_to 'Cancel', forms_path, class:'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+    <% end %>
+  </div>
+
 <% end %>

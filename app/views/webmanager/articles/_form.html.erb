@@ -1,7 +1,8 @@
+<div class="mdl-card__supporting-text">
 <%= form_for(article) do |f| %>
   <% if article.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(article.errors.count, "error") %> prohibited this contact from being saved:</h2>
+          <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
 
           <ul>
             <% article.errors.full_messages.each do |message| %>
@@ -10,41 +11,29 @@
           </ul>
         </div>
   <% end %>
-
-  <div class="md-form">
-    <%= f.text_field :title %>
-    <%= f.label :title%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_field :title, class:'mdl-textfield__input' %>
+    <%= f.label :title, class:'mdl-textfield__label'%>
   </div>
-  <div class="md-form">
-    <%= f.text_area :description, class:'md-textarea'%>
-    <%= f.label :description%>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_area :description, class:'mdl-textfield__input', rows: 3%>
+    <%= f.label :description, class:'mdl-textfield__label'%>
   </div>
-  <div class="md-form">
-    <%= f.label :tag_list, "Tags (separated by commas)" %>
-    <%= f.text_field :tag_list %>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.text_field :tag_list, class:'mdl-textfield__input' %>
+    <%= f.label :tag_list, "Tags (separated by commas)", class:'mdl-textfield__label' %>
   </div>
-  <div class="md-form">
+  <div class="mdl-cell mdl-cell--12-col">
     <%= f.trix_editor :body%>
   </div>
-
-
-  <div class="fixed-bottom">
-
   </div>
-
-
-  <footer class="page-footer center-on-small-only fixed-bottom">
-     <div class="footer-form-update container">
-          <% if @article.persisted? %>
-              <%= f.submit "Update Article", class:'btn btn-success' %>
-              <%= link_to 'Cancel', article_path(article), class:'btn-flat waves-effect' %>
-            <% else %>
-                <%= f.submit "Create Article", class:'btn btn-success' %>
-                <%= link_to 'Cancel', articles_path, class:'btn btn-primary' %>
-            <% end %>
-      </div>
-      <div class="footer-copyright">
-      </div>
-  </footer>
-
+  <div class="mdl-card__actions mdl-card--border">
+  <% if @article.persisted? %>
+    <%= f.submit "Update Article", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+    <%= link_to 'Cancel', article_path(article), class:'mdl-button mdl-js-button' %>
+  <% else %>
+    <%= f.submit "Create Article", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+    <%= link_to 'Cancel', articles_path, class:'mdl-button mdl-js-button' %>
+  <% end %>
+  </div>
 <% end %>

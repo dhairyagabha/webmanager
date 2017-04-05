@@ -1,10 +1,28 @@
 <%= render :partial => 'webmanager/shared/title_row' %>
-<% if @forms.empty? %>
-    <%=render :partial=>'webmanager/shared/empty'%>
-<% else %>
-    <% @forms.each do |form| %>
-        <h1><%= link_to form.name, form_path(form) %></h1>
-        <p><%= form.description %></p>
-        <%= link_to 'Delete', form_path(form), data: { confirm: 'Are you sure?' }, method: :delete %>
+<div class="mdl-cell mdl-cell--12-col">
+  <table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fields</th>
+      <th>Responses</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @forms.empty? %>
+        <%= render :partial => 'webmanager/shared/empty' %>
+    <% else %>
+        <% @forms.each do |form| %>
+            <tr>
+              <td class="mdl-typography--text-left-custom"><%= form.name %></td>
+              <td class="mdl-typography--text-center-custom"><%= form.form_fields.count %></td>
+              <td class="mdl-typography--text-center-custom"><%= form.form_responses.count %></td>
+              <td class="mdl-typography--text-center-custom"><%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, form_path(form), class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
+                <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_form_path(form), class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+            </tr>
+        <% end %>
     <% end %>
-<% end %>
+    </tbody>
+  </table>
+</div>

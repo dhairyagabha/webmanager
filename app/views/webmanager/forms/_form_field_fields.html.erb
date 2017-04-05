@@ -1,35 +1,42 @@
-<div class="fields">
-  <%= link_to_remove_fields "Remove Form Field", f %>
-  <div class="md-form">
-    <%= f.text_field :name %>
-    <%= f.label :name %>
+<div class="fields mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+      <%= f.text_field :name, class: 'mdl-textfield__input' %>
+      <%= f.label :name, class: 'mdl-textfield__label' %>
+    </div>
   </div>
-  <div class="md-form">
-    <%= f.text_field :label %>
-    <%= f.label :label %>
+  <div class="mdl-card__supporting-text">
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.text_field :label, class: 'mdl-textfield__input' %>
+      <%= f.label :label, class: 'mdl-textfield__label' %>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.text_field :hint, class: 'mdl-textfield__input' %>
+      <%= f.label :hint, class: 'mdl-textfield__label' %>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.text_field :placeholder, class: 'mdl-textfield__input' %>
+      <%= f.label :placeholder, class: 'mdl-textfield__label' %>
+    </div>
+    <div class="md-form">
+      <%= f.label :as, 'Field type:' %>
+      <%#= abort((f).inspect) %>
+      <%= f.select :as, options_for_select(field_types, :selected => :as), include_blank: 'Select a field type' %>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <%= f.text_field :collection, class: 'mdl-textfield__input' %>
+      <%= f.label :collection, class: 'mdl-textfield__label' %>
+    </div>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+      <%= f.check_box :disabled, class: 'mdl-checkbox__input' %>
+      <%= f.label :disabled, class: 'mdl-checkbox__label' %>
+    </label>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+      <%= f.check_box :required, class: 'mdl-checkbox__input' %>
+      <%= f.label :required, class: 'mdl-checkbox__label' %>
+    </label>
   </div>
-  <div class="md-form">
-    <%= f.text_field :hint %>
-    <%= f.label :hint %>
-  </div>
-  <div class="md-form">
-    <%= f.text_field :placeholder %>
-    <%= f.label :placeholder %>
-  </div>
-  <div class="md-form">
-    <%= f.select :as, options_for_select(field_types),{ :prompt => 'Select a field type'} %>
-    <%= f.label :as, 'Field type:' %>
-  </div>
-  <div class="md-form">
-    <%= f.text_field :collection %>
-    <%= f.label :collection %>
-  </div>
-  <div class="md-form">
-    <%= f.check_box :disabled %>
-    <%= f.label :disabled %>
-  </div>
-  <div class="md-form">
-    <%= f.check_box :required %>
-    <%= f.label :required %>
+  <div class="mdl-card__menu">
+    <%= link_to_remove_fields '<i class="material-icons">clear</i>'.html_safe, f %>
   </div>
 </div>

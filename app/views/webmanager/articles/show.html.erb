@@ -1,9 +1,20 @@
-<h1 class="h1-responsive"><%= @article.title %><%= link_to 'Edit Article', edit_article_path(@article), class: 'btn btn-primary float-right' %><%= link_to 'Delete Article', article_path(@article), class: 'btn btn-primary float-right', method: :delete, data: {confirm: "Are you sure?"} %></h1>
-<small>Created by <%= @article.user.name %> at <%= @article.created_at.to_formatted_s(:long) %></small>
-<p><% @article.tag_list.split(',').each do |t| %>
-    <span class="badge badge-info"><%= t %></span>
-<% end %></p>
-<hr>
-<div class="text-justify trix-content">
-  <p><%= raw @article.body %></p>
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
+  <div class="mdl-card__published-date">
+    <h6>Created by <%= @article.user.name %> at <%= @article.created_at.to_formatted_s(:long) %></h6>
+  </div>
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text"><%= @article.title %></h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <%= raw @article.body %>
+    <% @article.tag_list.split(',').each do |t| %>
+        <span class="mdl-chip">
+          <span class="mdl-chip__text"><%= t %></span>
+        </span>
+    <% end %>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <%= link_to 'Edit Article', edit_article_path(@article), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+    <%= link_to 'Delete Article', article_path(@article), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect', method: :delete, data: {confirm: "Are you sure?"} %>
+  </div>
 </div>

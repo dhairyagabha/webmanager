@@ -1,7 +1,7 @@
 module Webmanager
   module ApplicationHelper
     def link_to_remove_fields(name, f)
-      f.hidden_field(:_destroy) + link_to(name, '#', onclick: "remove_fields(this)")
+      f.hidden_field(:_destroy) + link_to(name, '#', onclick: "remove_fields(this)", class:'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored')
     end
 
     def link_to_add_fields(name, f, association)
@@ -9,7 +9,7 @@ module Webmanager
       fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
         render(association.to_s.singularize + "_fields", :f => builder)
       end
-      link_to( name, '#', onclick:"add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+      link_to( name, '#', onclick:"add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent')
     end
     def custom_flash
       flash_messages = []

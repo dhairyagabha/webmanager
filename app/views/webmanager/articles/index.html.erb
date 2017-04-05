@@ -1,15 +1,28 @@
 <%= render :partial => 'webmanager/shared/title_row' %>
-<% if @articles.empty? %>
-    <%=render :partial=>'webmanager/shared/empty'%>
-<% else %>
-    <% @articles.each do |article| %>
-        <div class="card bottom-margin">
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to article.title, article_path(article) %></h4>
-            <small>Created by <%= article.user.name %> at <%= article.created_at.to_formatted_s(:long) %></small>
-            <hr>
-            <p class="card-text"><%= truncate article.description, length: 500 %><%= link_to 'Read More', article %></p>
-          </div>
-        </div>
+<div class="mdl-cell mdl-cell--12-col">
+  <table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @articles.empty? %>
+        <%= render :partial => 'webmanager/shared/empty' %>
+    <% else %>
+        <% @articles.each do |article| %>
+            <tr>
+              <td class="mdl-typography--text-left-custom"><%= article.title %></td>
+              <td class="mdl-typography--text-center-custom"><%= article.user.name %></td>
+              <td class="mdl-typography--text-center-custom "><%= article.created_at.to_formatted_s(:long) %></td>
+              <td class="mdl-typography--text-center-custom"><%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, article, class:'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored'%>
+                <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_article_path(article), class:'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+            </tr>
+        <% end %>
     <% end %>
-<% end %>
+    </tbody>
+  </table>
+</div>

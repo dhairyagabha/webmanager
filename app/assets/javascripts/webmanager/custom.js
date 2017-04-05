@@ -1,8 +1,5 @@
 $(document).ready(function () {
-    $(".button-collapse").sideNav();
-    $('select').material_select();
-    var el = document.querySelector('.custom-scrollbar');
-    Ps.initialize(el);
+
 });
 
 function remove_fields(link) {

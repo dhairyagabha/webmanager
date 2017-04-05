@@ -1,37 +1,46 @@
 <%= render :partial => 'webmanager/shared/title_row' %>
-
-<h1>Events</h1>
-
-<table>
+<table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End time</th>
-      <th>Location</th>
-      <th>Organizer</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Timings</th>
+    <th>Location</th>
+    <th>Organizer</th>
+    <th colspan="2"></th>
+  </tr>
   </thead>
-
   <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= event.location %></td>
-        <td><%= event.organizer %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% if @events.empty? %>
+      <%= render :partial => 'webmanager/shared/empty' %>
+  <% else %>
+      <% @events.each do |event| %>
+          <tr>
+            <td class="mdl-typography--text-left-custom"><%= event.name %></td>
+            <td class="mdl-typography--text-center-custom"><%= event.start_date %> &shy; <%= event.end_date %></td>
+            <td class="mdl-typography--text-center-custom"><%= event.location %></td>
+            <td class="mdl-typography--text-center-custom"><%= event.organizer %></td>
+            <td class="mdl-typography--text-center-custom">
+              <%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, event, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
+              <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_event_path(event), class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
+              <%= link_to '<i class="material-icons">delete</i>'.html_safe, event, method: :delete, data: {confirm: 'Are you sure?'}, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+          </tr>
+      <% end %>
+  <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+<div class="mdl-cell mdl-cell--3-offset-desktop mdl-cell--6-col mdl-cell--12-col-tablet mdl-card mdl-shadow--2dp calendar-card">
+  <div class="mdl-card__title">
+    <div class="mdl-card__title-text ">
+      <%= link_to '<i class="material-icons">chevron_left</i>'.html_safe, date: @date.prev_month %><%= @date.strftime("%B %Y") %>
+      <%= link_to '<i class="material-icons">chevron_right</i>'.html_safe, date: @date.next_month %></div>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <%= calendar @date do |date| %>
+        <% if @events_by_date[date] %>
+            <span class="mdl-badge" data-badge="<%= @events_by_date[date].count %>"><%= date.day %></span>
+        <% else %>
+            <%= date.day %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

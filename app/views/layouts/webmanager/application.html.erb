@@ -2,24 +2,26 @@
 <html>
 <head>
   <title>Webmanager</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <%= stylesheet_link_tag "webmanager/application", media: 'all'%>
-  <script type="text/javascript" src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/compiled.min.js"></script>
-  <%= javascript_include_tag "webmanager/application"%>
+  <%= stylesheet_link_tag "webmanager/application", media: 'all' %>
+  <%= javascript_include_tag "webmanager/application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="fixed-sn white-skin">
-<% if current_user %>
-    <%= render :partial => 'layouts/webmanager/header' %>
-<% end %>
-<main>
-  <div class="container-fluid">
-    <%= custom_flash %>
-    <%= yield %>
-  </div>
-</main>
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-<%= render :partial => 'layouts/webmanager/footer' %>
+
+  <% if current_user %>
+      <%= render :partial => 'layouts/webmanager/header' %>
+  <% end %>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <%= custom_flash %>
+      <%= yield %>
+    </div>
+  </main>
+
+  <%= render :partial => 'layouts/webmanager/footer' %>
+</div>
 </body>
 </html>

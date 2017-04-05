@@ -10,38 +10,43 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="mdl-card__supporting-text mdl-grid">
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--6-col">
+    <%= f.label :name, class:'mdl-textfield__label' %>
+    <%= f.text_field :name, class:'mdl-textfield__input' %>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--6-col">
+    <%= f.label :organizer, class:'mdl-textfield__label' %>
+    <%= f.text_field :organizer, class:'mdl-textfield__input' %>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.label :description, class:'mdl-textfield__label' %>
+    <%= f.text_area :description, class:'mdl-textfield__input', rows:3 %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--6-col">
+    <%= f.label :start_date, class:'mdl-textfield__label' %>
+    <%= f.text_field :start_date, class:'mdl-textfield__input' %>
   </div>
 
-  <div class="field">
-    <%= f.label :start_date %>
-    <%= f.datetime_select :start_date %>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--6-col">
+    <%= f.label :end_time, class:'mdl-textfield__label'  %>
+    <%= f.text_field :end_date, class:'mdl-textfield__input' %>
   </div>
 
-  <div class="field">
-    <%= f.label :end_time %>
-    <%= f.datetime_select :end_date %>
+  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+    <%= f.label :location, class:'mdl-textfield__label' %>
+    <%= f.text_area :location, class:'mdl-textfield__input' %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_area :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :organizer %>
-    <%= f.text_field :organizer %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="mdl-card__actions mdl-card--border">
+  <% if @event.persisted? %>
+      <%= f.submit "Update Event", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+      <%= link_to 'Cancel', event_path(event), class:'mdl-button mdl-js-button' %>
+    <% else %>
+      <%= f.submit "Create Event", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+      <%= link_to 'Cancel', events_path, class:'mdl-button mdl-js-button' %>
+    <% end %>
   </div>
 <% end %>

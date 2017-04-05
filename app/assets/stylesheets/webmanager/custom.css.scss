@@ -1,15 +1,81 @@
-pre{
+$main-color: #009688;
+@font-face {
+  font-family: Roboto;
+  src: url("assets/font/Roboto-Regular.woff");
+}
+
+html, body {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+pre {
   padding: .2rem .4rem;
   color: #bd4147;
   background-color: #f7f7f9;
   border-radius: .25rem;
 }
-.bottom-margin{
+
+.bottom-margin {
   margin-bottom: 20px;
 }
-main{
-  margin-bottom: 10%;
+
+footer {
+  background-color: $main-color !important;
+  color: #ffffff !important;
+  text-align: center !important;
 }
-footer.page-footer{
-  padding-top: 0px !important;
+
+.mdl-data-table {
+  font-size: 14px !important;
+}
+
+.mdl-data-table th {
+  text-align: center !important;
+}
+
+.mdl-data-table tr td .mdl-button {
+  margin-right: 20px;
+}
+
+.text-center, .mdl-typography--text-center-custom {
+  text-align: center !important;
+}
+
+.mdl-typography--text-left-custom {
+  text-align: left !important;
+}
+
+.mdl-typography--text-right-custom {
+  text-align: right !important;
+}
+
+.mdl-card__published-date {
+  padding: 8px 16px;
+  h6 {
+    margin: 0px;
+  }
+}
+
+.mdl-card__supporting-text {
+  width: 95.5% !important;
+}
+
+.calendar-card {
+  .mdl-card__title{
+    justify-content: center !important;
+  }
+  .mdl-card__supporting-text {
+    width: 100% !important;
+    padding: 0px !important;
+    table {
+      width: 100% !important;
+      td.notmonth {
+        color: #adadad;
+      }
+      td.today {
+        background-color: $main-color;
+        color: white;
+      }
+    }
+  }
 }
