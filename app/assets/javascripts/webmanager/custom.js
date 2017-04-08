@@ -1,9 +1,9 @@
-function formatSelection(data, container){
-    console.log(data.parents);
-    data = $('<span>').addClass('mdl-chip mdl-chip--deletable').append($('<span>').addClass('mdl-chip__text').html(data.text));
-    data.append($('<span>').addClass('mdl-chip__action').html($('<i>').addClass('material-icons').html('cancel')));
-    return data;
-}
+// function formatSelection(data, container){
+//     console.log(data.parents);
+//     data = $('<span>').addClass('mdl-chip mdl-chip--deletable').append($('<span>').addClass('mdl-chip__text').html(data.text));
+//     data.append($('<span>').addClass('mdl-chip__action').html($('<i>').addClass('material-icons').html('cancel')));
+//     return data;
+// }
 
 $(document).ready(function () {
     $("#article_tag_list").select2({

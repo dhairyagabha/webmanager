@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 5.0.1"
   s.add_dependency "devise"
+  s.add_dependency "jquery-rails"
   s.add_dependency "trix"
   s.add_development_dependency "pg"
 end
