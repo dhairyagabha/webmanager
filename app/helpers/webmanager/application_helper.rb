@@ -22,7 +22,7 @@ module Webmanager
               $('#notification').html('#{message}');
               setTimeout(function () {
                 $('#notification').slideUp();
-              }, 3000);;
+              }, 3000);
             </script>"
         flash_messages << text.html_safe if message
       end
