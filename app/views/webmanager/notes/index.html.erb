@@ -14,7 +14,7 @@
           <div class="mdl-card__title-text"><%= note.title.titleize %></div>
         </div>
         <div class="mdl-card__supporting-text">
-          <p class="card-text"><%= note.body.html_safe %></p>
+          <p><%= note.body %></p>
         </div>
         <div class="mdl-card__actions mdl-card--border">
           <%= note.created_at.to_formatted_s(:long) %>

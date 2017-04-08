@@ -7,7 +7,7 @@
   </div>
   <div class="mdl-card__supporting-text">
     <%= raw @article.body %>
-    <% @article.tag_list.split(',').each do |t| %>
+    <% @article.tag_list.each do |t| %>
         <span class="mdl-chip">
           <span class="mdl-chip__text"><%= t %></span>
         </span>

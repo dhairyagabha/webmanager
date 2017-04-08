@@ -11,8 +11,18 @@ module Webmanager
       Tag.find_by_name!(name).articles
     end
 
+    # def tag_ids=(ids)
+    #   self.tags = ids.split(",").map do |n|
+    #     Tag.where(id: n).first_or_create!
+    #   end
+    # end
+    #
+    # def tag_ids
+    #   tags.map(&:id).join(", ")
+    # end
+
     def tag_list
-      tags.map(&:name).join(", ")
+      tags.map { |t| t.name }
     end
 
     def tag_list=(names)

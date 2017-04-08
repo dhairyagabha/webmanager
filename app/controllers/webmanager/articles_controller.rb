@@ -42,6 +42,7 @@ module Webmanager
     def update
       article = Article.find(params[:id])
       article.permalink = params["article"]["title"].downcase.gsub(' ', '-')
+      article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
       respond_to do |format|
         if article.update(article_params)
           format.html { redirect_to article, notice: 'Article was successfully updated!' }

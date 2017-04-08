@@ -1,29 +1,25 @@
 <div class="fields mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
-  <div class="mdl-card__title">
+  <div class="mdl-card__supporting-text mdl-grid">
     <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
       <%= f.text_field :name, class: 'mdl-textfield__input' %>
       <%= f.label :name, class: 'mdl-textfield__label' %>
     </div>
-  </div>
-  <div class="mdl-card__supporting-text">
-    <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--3-col">
       <%= f.text_field :label, class: 'mdl-textfield__input' %>
       <%= f.label :label, class: 'mdl-textfield__label' %>
     </div>
-    <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--3-col">
       <%= f.text_field :hint, class: 'mdl-textfield__input' %>
       <%= f.label :hint, class: 'mdl-textfield__label' %>
     </div>
-    <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--3-col">
       <%= f.text_field :placeholder, class: 'mdl-textfield__input' %>
       <%= f.label :placeholder, class: 'mdl-textfield__label' %>
     </div>
-    <div class="md-form">
-      <%= f.label :as, 'Field type:' %>
-      <%#= abort((f).inspect) %>
-      <%= f.select :as, options_for_select(field_types, :selected => :as), include_blank: 'Select a field type' %>
+    <div class="mdl-cell mdl-cell--3-col">
+      <%= f.select :as, field_types, include_blank: 'Select a field type' %>
     </div>
-    <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
       <%= f.text_field :collection, class: 'mdl-textfield__input' %>
       <%= f.label :collection, class: 'mdl-textfield__label' %>
     </div>

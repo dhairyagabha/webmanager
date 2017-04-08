@@ -1,0 +1,44 @@
+<div class="mdl-cell mdl-cell--12-col mdl-grid">
+  <h4 class="mdl-cell mdl-cell--12-col">Subscribers</h4>
+  <div class="mdl-cell mdl-cell--6-col">
+    <table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+      <thead>
+      <tr>
+        <th>No.</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @subscribers.each_with_index do |subscriber, index| %>
+          <tr>
+            <td class="mdl-typography--text-center-custom"><%= index+1 %></td>
+            <td class="mdl-typography--text-center-custom"><%= subscriber.email %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+    <div class="mdl-card__title">
+      <div class="mdl-card__title-text">Subscribers</div>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <%= form_for(@subscriber) do |f| %>
+          <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+            <%= f.text_field :name, class: 'mdl-textfield__input' %>
+            <%= f.label :name, class: 'mdl-textfield__label' %>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+            <%= f.text_field :email, class: 'mdl-textfield__input' %>
+            <%= f.label :email, class: 'mdl-textfield__label' %>
+          </div>
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+            <%= f.check_box :event_notification, class:'mdl-checkbox__input' %>
+            <span class="mdl-checkbox__label">Notifications</span>
+          </label>
+          <%= f.submit 'Subscribe', class:'mdl-button mdl-js-button mdl-button--raised' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@
     <p><%= @form.description %></p>
     <p class="form-message"><%= @form.success_message %></p>
     <p>
-      <span class="mdl-chip"><span class="mdl-chip__text"><%= @form.primary_mail.present? ? @form.primary_email : 'No Email' %></span></span>
+      <span class="mdl-chip"><span class="mdl-chip__text"><%= @form.primary_mail.present? ? @form.primary_mail : 'No Email' %></span></span>
     </p>
     <% @form.form_fields.each do |field| %>
         <% if field.as == 'string' %>
@@ -43,12 +43,12 @@
         <% end %>
         <% if field.as == 'check_list' %>
             <% field_collection = field.collection.split('|') %>
-            <%= field.label + ':' %>
+            <%= field.label.titleize + ':' %>
             <% field_collection.map do |f| %>
-                <fieldset class="form-group">
-                  <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, true, {class: 'filled-in', id: f.strip} %>
-                  <%= label_tag :"#{field.name}_#{f.strip}", f.strip.titleize %>
-                </fieldset>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                  <%= check_box_tag :"#{field.name}_#{f.strip}", f.strip, false, {class: 'mdl-checkbox__input', id: f.strip} %>
+                  <span id="<%= field.name + '_'+f.strip %>" class="mdl-checkbox__label"><%= f.strip.titleize %></span>
+                </label>
             <% end %>
         <% end %>
         <% if field.as == 'date' %>

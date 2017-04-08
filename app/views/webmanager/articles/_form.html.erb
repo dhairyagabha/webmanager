@@ -19,10 +19,7 @@
     <%= f.text_area :description, class:'mdl-textfield__input', rows: 3%>
     <%= f.label :description, class:'mdl-textfield__label'%>
   </div>
-  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-    <%= f.text_field :tag_list, class:'mdl-textfield__input' %>
-    <%= f.label :tag_list, "Tags (separated by commas)", class:'mdl-textfield__label' %>
-  </div>
+    <%=f.select :tag_list, options_for_select(Webmanager::Tag.all.map{|t| [t.name, t.name]}, :selected => @article.tag_list), {}, {:multiple => true}%>
   <div class="mdl-cell mdl-cell--12-col">
     <%= f.trix_editor :body%>
   </div>

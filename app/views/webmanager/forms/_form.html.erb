@@ -1,54 +1,54 @@
-<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
-<%= form_for(form) do |f| %>
-  <% if form.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(form.errors.count, "error") %> prohibited this form from being saved:</h2>
 
-          <ul>
-            <% form.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
+
+
+  <%= form_for(form) do |f| %>
+  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
+      <% if form.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(form.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+            <ul>
+              <% form.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <%= f.text_field :name, class: 'mdl-textfield__input' %>
+        <%= f.label :name, class: 'mdl-textfield__label' %>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <%= f.text_area :description, class: 'mdl-textfield__input', rows: 3 %>
+        <%= f.label :description, class: 'mdl-textfield__label' %>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <%= f.text_area :success_message, class: 'mdl-textfield__input', rows: 1 %>
+        <%= f.label :success_message, class: 'mdl-textfield__label' %>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
+        <%= f.email_field :primary_mail, class: 'mdl-textfield__input' %>
+        <%= f.label :primary_mail, class: 'mdl-textfield__label' %>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+      <%= link_to_add_fields "Add Form Fields", f, :form_fields %>
+      </div>
+</div>
+  <%= f.fields_for :form_fields do |builder| %>
+      <%= render 'form_field_fields', :f => builder %>
   <% end %>
-
-  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-    <%= f.text_field :name, class:'mdl-textfield__input'%>
-    <%= f.label :name, class:'mdl-textfield__label'%>
-  </div>
-  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-    <%= f.text_area :description, class:'mdl-textfield__input', rows: 3%>
-    <%= f.label :description, class:'mdl-textfield__label'%>
-  </div>
-  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-    <%= f.text_area :success_message, class:'mdl-textfield__input', rows:1%>
-    <%= f.label :success_message, class:'mdl-textfield__label'%>
-  </div>
-  <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-    <%= f.email_field :primary_mail, class:'mdl-textfield__input'%>
-    <%= f.label :primary_mail, class:'mdl-textfield__label'%>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-  <%= link_to_add_fields "Add Form Fields", f, :form_fields %>
+  <div class="new-fields">
   </div>
 
-  </div>
-
-
-    <%= f.fields_for :form_fields do |builder| %>
-        <%= render 'form_field_fields', :f => builder %>
-    <% end %>
-  <div class="new-fields ">
-  </div>
 
   <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
-  <% if @form.persisted? %>
-      <%= f.submit "Update Form", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
-      <%= link_to 'Cancel', form_path(form), class:'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
-    <% else %>
-        <%= f.submit "Create Form", class:'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
-        <%= link_to 'Cancel', forms_path, class:'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
-    <% end %>
-  </div>
-
+          <% if @form.persisted? %>
+              <%= f.submit "Update Form", class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+              <%= link_to 'Cancel', form_path(form), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+          <% else %>
+              <%= f.submit "Create Form", class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--accent' %>
+              <%= link_to 'Cancel', forms_path, class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>
+          <% end %>
+        </div>
 <% end %>
