@@ -12,3 +12,6 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+gem 'paperclip','~> 5.0.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'

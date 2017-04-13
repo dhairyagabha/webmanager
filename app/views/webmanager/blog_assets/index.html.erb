@@ -1,0 +1,26 @@
+<%= form_for @new_asset, :html => {:multipart => true} do |f| %>
+    <% if @new_asset.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@new_asset.errors.count, "error") %> prohibited this article from being saved:</h2>
+          <ul>
+            <% @new_asset.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.file_field :asset %>
+    <%= f.submit 'Upload Asset', class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
+<% end %>
+<div class="mdl-cell mdl-cell--12-col js-masonry" id="container" data-masonry-options='{ "columnWidth": 10, "itemSelector": ".mdl-card", "gutter" : 2  }'>
+  <% @assets.each do |asset| %>
+      <div class="mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__supporting-text asset_image">
+          <%= image_tag asset.asset.url(:medium) %>
+        </div>
+        <div class="mdl-card--border mdl-card__actions">
+          <%= link_to 'Delete', blog_asset_path(asset), method: :delete, data: {confirm: "Are you sure?"}, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
+        </div>
+      </div>
+  <% end %>
+</div>

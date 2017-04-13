@@ -13,4 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require trix
+//= require jquery-ui
 //= require_tree .

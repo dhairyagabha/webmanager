@@ -43,6 +43,7 @@ module Webmanager
       article = Article.find(params[:id])
       article.permalink = params["article"]["title"].downcase.gsub(' ', '-')
       article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
+      article.asset_list = params["article"]["asset_list"].reject { |c| c.empty? }.join(',')
       respond_to do |format|
         if article.update(article_params)
           format.html { redirect_to article, notice: 'Article was successfully updated!' }
@@ -65,7 +66,7 @@ module Webmanager
 
     private
     def article_params
-      params.require(:article).permit(:id, :title, :description, :body, :permalink, :author_id, :tag_list)
+      params.require(:article).permit(:id, :title, :description, :body, :permalink, :author_id, :tag_list, :asset_list)
     end
   end
 end

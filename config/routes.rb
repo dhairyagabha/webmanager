@@ -5,8 +5,8 @@ Webmanager::Engine.routes.draw do
     get 'sign_in', to: '/devise/sessions#new'
     delete 'sign_out', to: '/devise/sessions#destroy'
   end
-  Webmanager::DynamicRouter.load
   resources :articles
+  resources :blog_assets
   resources :forms
   resources :form_fields
   resources :form_responses
