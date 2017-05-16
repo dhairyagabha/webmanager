@@ -5,7 +5,7 @@ module Webmanager
     before_action :authenticate_user!, except: :show
 
     def index
-      @articles = Article.all
+      @articles = params[:q] ? Article.where(title: params[:q]) : Article.all
     end
 
     def show
@@ -18,12 +18,15 @@ module Webmanager
 
     def new
       @article = current_user.articles.new
+      @tags = Webmanager::Tag.all
 
     end
 
     def create
       @article = current_user.articles.new(article_params)
       @article.permalink = @article.title.downcase.gsub(' ', '-')
+      @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
+      @article.asset_list = params["article"]["asset_list"].reject { |c| c.empty? }.join(',')
       respond_to do |format|
         if @article.save
           format.html { redirect_to @article, notice: 'Article was successfully created!' }
@@ -37,6 +40,8 @@ module Webmanager
 
     def edit
       @article = Article.find(params[:id])
+      @tags = Webmanager::Tag.all
+
     end
 
     def update

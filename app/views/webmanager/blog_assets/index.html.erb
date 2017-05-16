@@ -15,8 +15,8 @@
 <div class="mdl-cell mdl-cell--12-col js-masonry" id="container" data-masonry-options='{ "columnWidth": 10, "itemSelector": ".mdl-card", "gutter" : 2  }'>
   <% @assets.each do |asset| %>
       <div class="mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__supporting-text asset_image">
-          <%= image_tag asset.asset.url(:medium) %>
+        <div class="mdl-card__supporting-text asset_image ">
+          <%= image_tag asset.asset.url(:thumb) %>
         </div>
         <div class="mdl-card--border mdl-card__actions">
           <%= link_to 'Delete', blog_asset_path(asset), method: :delete, data: {confirm: "Are you sure?"}, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>

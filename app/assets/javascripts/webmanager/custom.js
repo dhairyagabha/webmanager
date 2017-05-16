@@ -13,23 +13,33 @@ $(document).ready(function () {
         // templateSelection: formatSelection
     });
     $('#container').masonry();
-    $('#select_asset').slideUp();
+    $('#select-asset').click(function () {
+        var initial = $('#assets_show').html();
+        showDialog({
+            title: 'Select Assets',
+            text: $('#assets_show').html(),
+            negative: {
+                title: 'Cancel',
+                onClick: function (e) {
+                    $('#assets_show').html(initial);
+                }
+            },
+            positive: {
+                title: 'Done'
+            }
+        });
+    });
 });
 
-function select_asset(){
-    if($('#select_asset').visible == true){
-        $('#select_asset').slideUp();
-    } else {
-        $('#select_asset').slideDown();
-    }
-}
 
 function selected(id) {
     var check = document.getElementById(id);
     if (check.checked) {
-        $('body').find("[data-asset='" + id + "']").removeClass('selected');
+        var label = $('body').find("[data-asset='" + id + "']");
+        label.removeClass('selected');
     } else {
-        $('body').find("[data-asset='" + id + "']").addClass('selected');
+        var label = $('body').find("[data-asset='" + id + "']");
+        label.addClass('selected');
     }
 }
 function remove_fields(link) {

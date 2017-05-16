@@ -15,3 +15,4 @@ gemspec
 gem 'paperclip','~> 5.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'aws-sdk', '~> 2.3'

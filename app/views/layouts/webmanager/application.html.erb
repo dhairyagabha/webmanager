@@ -3,12 +3,8 @@
 <head>
   <title>Webmanager</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <%= stylesheet_link_tag  "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.css"%>
+  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.css" %>
   <%= stylesheet_link_tag "webmanager/application", media: 'all' %>
-  <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
   <%= javascript_include_tag "webmanager/application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -16,9 +12,7 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
 
-  <% if current_user %>
-      <%= render :partial => 'layouts/webmanager/header' %>
-  <% end %>
+  <%= render :partial => 'layouts/webmanager/header' %>
   <main class="mdl-layout__content">
     <div class="page-content">
       <div id="notification" class="mdl-cell mdl-cell--12-col">

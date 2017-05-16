@@ -2,7 +2,7 @@ module Webmanager
   class BlogAsset < ApplicationRecord
     has_many :assets, dependent: :destroy
     has_many :articles, through: :assets
-    has_attached_file :asset, styles: {medium: "300x300>", thumb: "100x100>"}, default_url: "/images/:style/missing.png"
+    has_attached_file :asset, styles: Webmanager.image_styles, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :asset,
                                       :content_type => /^image\/(png|gif|jpeg)/,
                                       :message => 'only (png/gif/jpeg) images'

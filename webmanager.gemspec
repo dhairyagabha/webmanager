@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "jquery-ui-rails"
   s.add_dependency "paperclip", "~> 5.0.0"
+  s.add_dependency "aws-sdk", "~> 2.3"
   s.add_dependency "trix"
   s.add_development_dependency "pg"
 end

@@ -1,21 +1,36 @@
 <header class="mdl-layout__header">
   <div class="mdl-layout__header-row">
     <span class="mdl-layout-title">Webmanager</span>
-    <div class="mdl-layout-spacer"></div>
+    <% if current_user %>
+        <div class="mdh-expandable-search mdl-cell--hide-phone">
+          <i class="material-icons">search</i>
+          <form action="/webmanager/articles" method="post">
+            <input type="text" placeholder="Search" size="1" id="articles_q">
+          </form>
+        </div>
+    <% end %>
+    <!-- Displayed on mobile -->
+    <div class="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
+    <!--<div class="mdl-layout-spacer"></div>-->
     <nav class="mdl-navigation mdl-layout--large-screen-only">
-      <%= link_to 'Logout'.html_safe, sign_out_path, :method => :delete, class: 'mdl-navigation__link' %>
+      <% if current_user %>
+          <%= link_to 'Logout'.html_safe, sign_out_path, :method => :delete, class: 'mdl-navigation__link' %>
+      <% end %>
     </nav>
   </div>
 </header>
-<div class="mdl-layout__drawer">
-  <span class="mdl-layout-title">Webmanager</span>
-  <nav class="mdl-navigation">
-    <%= link_to 'Articles', articles_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Media Library', blog_assets_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Forms', forms_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Notes', notes_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Events', events_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Subscribers', newsletter_receivers_path, class: 'mdl-navigation__link' %>
-    <%= link_to 'Logout'.html_safe, sign_out_path, :method => :delete, class: 'mdl-navigation__link' %>
-  </nav>
-</div>
+<% if current_user %>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Webmanager</span>
+      <nav class="mdl-navigation">
+        <%= link_to 'Home', root_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Articles', articles_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Media Library', blog_assets_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Forms', forms_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Notes', notes_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Events', events_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Subscribers', newsletter_receivers_path, class: 'mdl-navigation__link' %>
+        <%= link_to 'Logout'.html_safe, sign_out_path, :method => :delete, class: 'mdl-navigation__link' %>
+      </nav>
+    </div>
+<% end %>

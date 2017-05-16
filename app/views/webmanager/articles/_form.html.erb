@@ -19,15 +19,25 @@
     <%= f.text_area :description, class:'mdl-textfield__input', rows: 3%>
     <%= f.label :description, class:'mdl-textfield__label'%>
   </div>
-  <div class="flex-checkboxes" id="select_asset">
+  <div class="hidden" id="assets_show">
+  <div class="flex-checkboxes">
   <%= hidden_field_tag "article[asset_list][]", nil %>
-    <% Webmanager::BlogAsset.all.each do |asset| %>
-          <%= check_box_tag "article[asset_list][]", asset.id, article.asset_list.include?(asset.id.to_s), id: dom_id(asset) %>
-          <%= label_tag dom_id(asset), (image_tag asset.asset.url(:thumb)), onClick: "selected('#{dom_id(asset)}')", "data-asset":dom_id(asset), class: article.asset_list.include?(asset.id.to_s) ? 'selected' : ''%>
-    <% end %>
+      <% Webmanager::BlogAsset.all.each do |asset| %>
+            <%= check_box_tag "article[asset_list][]", asset.id, article.asset_list.include?(asset.id.to_s), id: dom_id(asset) %>
+            <%= label_tag dom_id(asset), (image_tag asset.asset.url(:thumb)), onClick: "selected('#{dom_id(asset)}')", "data-asset":dom_id(asset), class: article.asset_list.include?(asset.id.to_s) ? 'selected' : ''%>
+      <% end %>
   </div>
-  <span class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" onclick="select_asset()"></span>
-    <%=f.select :tag_list, options_for_select(Webmanager::Tag.all.map{|t| [t.name, t.name]}, :selected => @article.tag_list), {}, {:multiple => true}%>
+  </div>
+  <div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col">
+  <a id="select-asset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Select Assets
+    </a>
+  </div>
+  <div class="mdl-cell mdl-cell--col-10">
+      <%=f.select :tag_list, options_for_select(@tags.map{|t| [t.name, t.name]}, :selected => @article.tag_list), {}, {:multiple => true}%>
+  </div>
+  </div>
   <div class="mdl-cell mdl-cell--12-col">
     <%= f.trix_editor :body%>
   </div>

@@ -7,14 +7,16 @@
   </div>
   <div class="mdl-card__supporting-text">
     <%= raw @article.body %>
+    <div>
+      <% @article.blog_assets.each do |asset| %>
+          <%= image_tag asset.asset.url(:thumb) %>
+      <% end %>
+    </div>
     <% @article.tag_list.each do |t| %>
         <span class="mdl-chip">
           <span class="mdl-chip__text"><%= t %></span>
         </span>
     <% end %>
-    <% @article.blog_assets.each do |asset| %>
-    <%= image_tag asset.asset.url(:medium) %>
-        <%end %>
   </div>
   <div class="mdl-card__actions mdl-card--border">
     <%= link_to 'Edit Article', edit_article_path(@article), class: 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect' %>

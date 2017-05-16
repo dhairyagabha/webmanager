@@ -19,8 +19,8 @@
               <td class="mdl-typography--text-left-custom"><%= article.title %></td>
               <td class="mdl-typography--text-center-custom"><%= article.user.name %></td>
               <td class="mdl-typography--text-center-custom "><%= article.created_at.to_formatted_s(:long) %></td>
-              <td class="mdl-typography--text-center-custom"><%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, article, class:'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored'%>
-                <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_article_path(article), class:'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+              <td class="mdl-typography--text-center-custom"><%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, article, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
+                <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_article_path(article), class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
             </tr>
         <% end %>
     <% end %>

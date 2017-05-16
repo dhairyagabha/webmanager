@@ -15,6 +15,15 @@ module Webmanager
       end
     end
 
+    def destroy
+      @asset = BlogAsset.find(params[:id])
+      @asset.destroy
+      respond_to do |format|
+        format.html { redirect_to :back, notice: 'Asset was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end
+
     private
     def asset_params
       params.require(:blog_asset).permit(:id, :asset, :dimensions)

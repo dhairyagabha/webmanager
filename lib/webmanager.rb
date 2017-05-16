@@ -4,5 +4,5 @@ require "webmanager/engine"
 
 
 module Webmanager
-  # Your code goes here...
+  mattr_accessor :image_styles
 end
