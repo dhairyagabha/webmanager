@@ -6,7 +6,7 @@ module Webmanager
 
 
     def after_sign_in_path_for(resource)
-      root_path
+      redirect_to controller: Webmanager::Home, action: :index
     end
 
     protected
