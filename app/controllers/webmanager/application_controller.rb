@@ -6,7 +6,7 @@ module Webmanager
 
 
     def after_sign_in_path_for(resource)
-      webmanager.root_path
+      '/webmanager'
     end
 
     protected
