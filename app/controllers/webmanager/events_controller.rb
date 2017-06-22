@@ -50,15 +50,22 @@ module Webmanager
       redirect_to events_url, notice: 'Event was successfully destroyed.'
     end
 
-    private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_event
-        @event = Event.find(params[:id])
+    def notify
+      NewsletterReceiver.all.each do |s|
+        EventsMailer.attend_event(s.email, params[:event]).deliver_later
       end
+      redirect_to :back, notice: 'Everyone notified successfully!'
+    end
 
-      # Only allow a trusted parameter "white list" through.
-      def event_params
-        params.require(:event).permit(:name, :description, :start_date, :end_time, :location, :organizer)
-      end
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Event.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def event_params
+      params.require(:event).permit(:name, :description, :start_date, :end_time, :location, :organizer)
+    end
   end
 end

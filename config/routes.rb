@@ -13,5 +13,9 @@ Webmanager::Engine.routes.draw do
   resources :notes
   resources :tags
   resources :newsletter_receivers
-  resources :events
+  resources :events do
+    collection do
+      post :notify
+    end
+  end
 end

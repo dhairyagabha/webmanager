@@ -23,7 +23,7 @@
         <% end %>
         <% if field.as == 'text' %>
             <div class="mdl-textfield mdl-js-textfield mdl-cell mdl-cell--12-col">
-              <%= text_area_tag :"#{field.name}", '', {class:'mdl-textfield__input', rows:5, required: field.required, disabled: field.disabled}%>
+              <%= text_area_tag :"#{field.name}", '', {class:'mdl-textfield__input', rows:3, required: field.required, disabled: field.disabled}%>
               <%= label_tag :"#{field.name}", field.placeholder,{class:'mdl-textfield__label'} %>
             </div>
         <% end %>

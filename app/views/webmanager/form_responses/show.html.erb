@@ -1,0 +1,15 @@
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--10-col-desktop mdl-cell--1-offset-desktop mdl-cell--12-col">
+  <div class="mdl-card__published-date">
+    <h6>Submitted at <%= @response.created_at.to_formatted_s(:long) %></h6>
+  </div>
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Form: <%= @response.form.name %></h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <% @response.response.each do |attr, resp| %>
+        <p><b><%= attr.titleize %></b>: <%= resp %></p>
+    <% end %>
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+  </div>
+</div>

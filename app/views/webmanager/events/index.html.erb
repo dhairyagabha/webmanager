@@ -22,7 +22,8 @@
             <td class="mdl-typography--text-center-custom">
               <%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, event, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
               <%= link_to '<i class="material-icons">edit_pencil</i>'.html_safe, edit_event_path(event), class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
-              <%= link_to '<i class="material-icons">delete</i>'.html_safe, event, method: :delete, data: {confirm: 'Are you sure?'}, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+              <%= link_to '<i class="material-icons">delete</i>'.html_safe, event, method: :delete, data: {confirm: 'Are you sure?'}, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %>
+              <%= link_to '<i class="material-icons">send</i>'.html_safe, notify_events_url(event: event), method: :post, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
           </tr>
       <% end %>
   <% end %>

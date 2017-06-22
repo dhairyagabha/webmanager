@@ -14,10 +14,10 @@ Devise.setup do |config|
   config.mailer_sender = 'webmanager@help.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'Devise::Mailer'
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  config.parent_mailer = 'ActionMailer::Base'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -265,7 +265,7 @@ Devise.setup do |config|
   #     mount MyEngine, at: '/my_engine'
   #
   # The router that invoked `devise_for`, in the example above, would be:
-  config.router_name = :webmanager
+  config.router_name = Webmanager
   config.parent_controller = 'Webmanager::ApplicationController'
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,

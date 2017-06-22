@@ -1,0 +1,27 @@
+<%= render :partial => 'webmanager/shared/title_row' %>
+<div class="mdl-cell mdl-cell--12-col">
+  <table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+    <thead>
+    <tr>
+      <th>Form</th>
+      <th>Response</th>
+      <th>Submitted at</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @responses.empty? %>
+        <%= render :partial => 'webmanager/shared/empty' %>
+    <% else %>
+        <% @responses.each do |r| %>
+            <tr>
+              <td class="mdl-typography--text-left-custom"><%= r.form.name %></td>
+              <td class="mdl-typography--text-left-custom"><% r.response.each do |attr,resp| %><%= attr.titleize + ': '+resp %><br/><% end %></td>
+              <td class="mdl-typography--text-center-custom "><%= r.created_at.to_formatted_s(:long) %></td>
+              <td class="mdl-typography--text-center-custom"><%= link_to '<i class="material-icons">open_in_new</i>'.html_safe, r, class: 'mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored' %></td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<p>
+  Response to <%= @form.name %> received.<br>
+<table style="border: none;">
+  <tbody>
+  <% @response.response.each do |attr, response| %>
+      <tr>
+        <td><strong><%= attr %></strong></td>
+        <td><%= response %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</p>
+<p>
+  Please respond to this request at your earliest convinience.
+</p>
+<p>Thanks for using Webmanager and have a great day!</p>
+</body>
+</html>
