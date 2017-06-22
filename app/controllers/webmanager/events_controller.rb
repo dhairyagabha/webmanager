@@ -52,7 +52,7 @@ module Webmanager
 
     def notify
       NewsletterReceiver.all.each do |s|
-        EventsMailer.attend_event(s.email, params[:event]).deliver_later
+        EventsMailer.attend_event(s.email, params[:event]).deliver
       end
       redirect_to :back, notice: 'Everyone notified successfully!'
     end
