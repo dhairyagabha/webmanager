@@ -2,6 +2,7 @@ require_dependency "webmanager/application_controller"
 
 module Webmanager
   class FormResponsesController < ApplicationController
+    skip_before_action :verify_authenticity_token
 
     def index
       @responses = FormResponse.all

@@ -2,6 +2,8 @@ require_dependency "webmanager/application_controller"
 
 module Webmanager
   class NotesController < ApplicationController
+    before_action :authenticate_user!
+
     def index
       set_note
       @notes = Note.all

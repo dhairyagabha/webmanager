@@ -2,6 +2,8 @@ require_dependency "webmanager/application_controller"
 
 module Webmanager
   class FormFieldsController < ApplicationController
+    before_action :authenticate_user!, except: :show
+
     def new
       @form_field = FormField.new
     end

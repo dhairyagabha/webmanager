@@ -2,6 +2,7 @@ require_dependency "webmanager/application_controller"
 
 module Webmanager
   class BlogAssetsController < ApplicationController
+    before_action :authenticate_user!, except: :show
     def index
       @assets = BlogAsset.all
       @new_asset = BlogAsset.new
