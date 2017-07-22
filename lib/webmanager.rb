@@ -1,5 +1,6 @@
-
+require "paperclip"
 require "devise"
+require "trix"
 require "webmanager/engine"
 
 
