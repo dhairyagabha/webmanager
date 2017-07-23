@@ -55,7 +55,7 @@ module Webmanager
       NewsletterReceiver.all.each do |s|
         EventsMailer.attend_event(s.email, params[:event]).deliver
       end
-      redirect_to :back, notice: 'Everyone notified successfully!'
+      redirect_back root_path, notice: 'Everyone notified successfully!'
     end
 
     private
