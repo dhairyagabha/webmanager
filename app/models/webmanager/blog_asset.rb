@@ -4,8 +4,8 @@ module Webmanager
     has_many :articles, through: :assets
     has_attached_file :asset, styles: Webmanager.image_styles, default_url: "/images/:style/missing.png"
     validates_attachment_content_type :asset,
-                                      :content_type => /^image\/(png|gif|jpeg)/,
-                                      :message => 'only (png/gif/jpeg) images'
+                                      :content_type => %w(image/jpeg image/jpg image/png image/gif application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document),
+    :message => 'only (png/gif/jpeg) images'
 
     before_save :extract_dimensions
     serialize :dimensions
