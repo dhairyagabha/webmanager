@@ -43,17 +43,17 @@ module Webmanager
     end
 
     def update
-      article = Article.find(params[:id])
-      article.permalink = params["article"]["title"].downcase.gsub(' ', '-')
-      article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
-      article.asset_list = params["article"]["asset_list"].reject { |c| c.empty? }.join(',')
+      @article = Article.find(params[:id])
+      @article.permalink = params["article"]["title"].downcase.gsub(' ', '-')
+      @article.tag_list = params["article"]["tag_list"].reject { |c| c.empty? }.join(',')
+      @article.asset_list = params["article"]["asset_list"].reject { |c| c.empty? }.join(',')
       respond_to do |format|
-        if article.update(article_params)
-          format.html { redirect_to article, notice: 'Article was successfully updated!' }
-          format.json { render :show, status: :created, location: article }
+        if @article.update(article_params)
+          format.html { redirect_to @article, notice: 'Article was successfully updated!' }
+          format.json { render :show, status: :created, location: @article }
         else
           format.html { render :edit }
-          format.json { render json: article.errors, status: :unprocessable_entity }
+          format.json { render json: @article.errors, status: :unprocessable_entity }
         end
       end
     end
