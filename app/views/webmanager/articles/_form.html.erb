@@ -35,7 +35,7 @@
     </a>
   </div>
   <div class="mdl-cell mdl-cell--col-10">
-      <%=f.select :tag_list, options_for_select(@tags.map{|t| [t.name, t.name]}, :selected => @article.tag_list), {}, {:multiple => true}%>
+      <%=f.select :tag_list, options_for_select(Webmanager::Tag.all.map{|t| [t.name, t.name]}, :selected => @article.tag_list), {}, {:multiple => true}%>
   </div>
   </div>
   <div class="mdl-cell mdl-cell--12-col">

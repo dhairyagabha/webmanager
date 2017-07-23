@@ -18,8 +18,6 @@ module Webmanager
 
     def new
       @article = current_user.articles.new
-      @tags = Webmanager::Tag.all
-
     end
 
     def create
