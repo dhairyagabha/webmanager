@@ -15,8 +15,16 @@
 <div class="mdl-cell mdl-cell--12-col js-masonry" id="container" data-masonry-options='{ "columnWidth": 10, "itemSelector": ".mdl-card", "gutter" : 2  }'>
   <% @assets.each do |asset| %>
       <div class="mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__supporting-text asset_image ">
-          <%= image_tag asset.asset.url(:thumb) %>
+        <div class="mdl-card__supporting-text">
+          <div class="asset_image">
+            <% if %w(application/pdf application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document).include?(asset.asset_content_type) %>
+                <% url = '/assets/webmanager/pdf.svg' %>
+            <% else %>
+                <% url = asset.asset.url(:thumb) %>
+            <% end %>
+            <%= image_tag url, style:'width: 50px;' %>
+          </div>
+          <div><%= asset.asset_file_name %></div>
         </div>
         <div class="mdl-card--border mdl-card__actions">
           <%= link_to 'Delete', blog_asset_path(asset), method: :delete, data: {confirm: "Are you sure?"}, class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
