@@ -12,7 +12,7 @@ module Webmanager
       # abort(params.inspect)
       @asset = BlogAsset.new(asset_params)
       if @asset.save
-        redirect_back root_path
+        redirect_back(fallback_location: root_path)
       end
     end
 
@@ -20,7 +20,7 @@ module Webmanager
       @asset = BlogAsset.find(params[:id])
       @asset.destroy
       respond_to do |format|
-        format.html { redirect_back root_path, notice: 'Asset was successfully destroyed.' }
+        format.html { redirect_back(fallback_location: root_path, notice: 'Asset was successfully destroyed.') }
         format.json { head :no_content }
       end
     end

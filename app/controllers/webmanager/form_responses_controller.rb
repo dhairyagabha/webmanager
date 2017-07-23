@@ -15,7 +15,7 @@ module Webmanager
       @form_response.response = params["form_response"]["response"].to_unsafe_h
       if @form_response.save!
         FormResponseMailer.query_received(@form_response).deliver
-        redirect_back root_path,notice: @form.success_message
+        redirect_back(fallback_location: root_path,notice: @form.success_message)
       end
     end
 
