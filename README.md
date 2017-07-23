@@ -4,7 +4,12 @@ After looking at several other open source Rails CMS, webmanager was written to 
 Webmanager out of the box is protected by devise, has invitation system built in for the ease of user invitations.
 
 ## Usage
-How to use my plugin.
+Create any empty rails application for your website and add `gem 'webmanager'` to your gem file. Webmanager is a Rails Engine that handles following for you:
+######Authentication
+Webmanager handles user management and authentication using rails `gem 'devise'`. Webmanager allows inviting users using rails `gem 'devise-invitable'`.
+######Articles
+######Articles Tagging
+######Article Assets
 
 ## Installation
 Add this line to your application's Gemfile:
