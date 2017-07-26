@@ -120,7 +120,9 @@ label.selected img {
   }
 }
 
-
+.mdl-card__full-body{
+  width: 97%;
+}
 
 
 //Search Bar Styles
@@ -193,3 +195,4 @@ label.selected img {
 .mdh-expandable-search input:-ms-input-placeholder { /* Internet Explorer 10+ */
   color:    #FFFFFF;
 }
+
