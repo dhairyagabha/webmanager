@@ -6,9 +6,7 @@
 // }
 
 $(document).ready(function () {
-    $('.select2').select2({
-       placeholder: $(this).attr('data-placeholder')
-    });
+    $('.select2').select2({});
     $("#article_tag_list").select2({
         placeholder: 'Add Article Tags ...',
         tags: true,
