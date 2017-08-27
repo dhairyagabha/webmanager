@@ -28,7 +28,6 @@ module Webmanager
     # POST /events
     def create
       @event = Event.new(event_params)
-
       if @event.save
         redirect_to @event, notice: 'Event was successfully created.'
       else
@@ -66,7 +65,7 @@ module Webmanager
 
     # Only allow a trusted parameter "white list" through.
     def event_params
-      params.require(:event).permit(:name, :description, :start_date, :end_time, :location, :organizer)
+      params.require(:event).permit(:name, :description, :start_date, :end_date, :location, :organizer)
     end
   end
 end

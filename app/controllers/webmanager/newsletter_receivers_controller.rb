@@ -11,7 +11,7 @@ module Webmanager
     def create
       @subscriber = NewsletterReceiver.new(subscription_params)
       if @subscriber.save
-        redirect_back(fallback_location: root_path)
+        redirect_back(fallback_location: root_url)
       end
     end
 

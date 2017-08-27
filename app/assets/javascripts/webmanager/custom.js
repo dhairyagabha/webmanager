@@ -13,6 +13,12 @@ $(document).ready(function () {
         tokenSeparators: [',', ' ']
         // templateSelection: formatSelection
     });
+    $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+        }
+    );
     $('#container').masonry();
     $('#select-asset').click(function () {
         var initial = $('#assets_show').html();
