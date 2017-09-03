@@ -2,11 +2,11 @@ $main-color: #009688;
 $success: #DFF0D8;
 @font-face {
   font-family: Roboto;
-  src: url("assets/font/Roboto-Regular.woff");
+  //src: url("assets/font/Roboto-Regular.woff");
 }
 
-html, body {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+html, body, input {
+  font-family: 'Encode Sans Semi Condensed', sans-serif !important;
 }
 
 pre {

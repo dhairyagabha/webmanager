@@ -11,7 +11,9 @@ module Webmanager
     def create
       @subscriber = NewsletterReceiver.new(subscription_params)
       if @subscriber.save
-        redirect_back(fallback_location: root_url)
+        redirect_back(fallback_location: root_url, notice: 'Article was successfully created!')
+      else
+        redirect_back(fallback_location: root_url, alert: 'You have already subscribed!')
       end
     end
 
@@ -25,7 +27,7 @@ module Webmanager
     end
     private
     def subscription_params
-      params.permit(:name, :email, :event_notification)
+      params.require(:newsletter_receiver).permit(:name, :email, :event_notification)
     end
   end
 end
